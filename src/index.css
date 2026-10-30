@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+:root {
+  --color-sky-300: #ffd08a;
+  --color-sky-400: #ffad42;
+  --color-sky-500: #f07800;
+  --color-sky-600: #c95d00;
+  --color-indigo-300: #ffc078;
+  --color-indigo-400: #ff982e;
+  --color-indigo-500: #e66c00;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    background: #000;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #000;
+  }
+
+  button,
+  a,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #ff982e;
+    outline-offset: 3px;
+  }
+  
+  code {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .bg-grid-pattern {
+    background-size: 40px 40px;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 152, 46, 0.3), 0 0 20px rgba(255, 152, 46, 0.1);
+  }
+
+  .border-glow {
+    box-shadow: 0 0 15px rgba(255, 152, 46, 0.16);
+  }
+  
+  .glass-card {
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 152, 46, 0.12);
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glass-card-hover:hover {
+    background: #000;
+    border-color: rgba(255, 152, 46, 0.55);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(240, 120, 0, 0.24);
+    transform: translateY(-4px);
+  }
+
+  .glass-nav {
+    background: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 152, 46, 0.16);
+  }
+
+  /* Custom animated scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #7a3d08;
+    border-radius: 4px;
+    border: 2px solid #000;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f07800;
+  }
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s infinite ease-in-out;
+}
+
+@keyframes letter-bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-letter-bob {
+  animation: letter-bob 1.8s ease-in-out infinite;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.water-bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.water-bubbles span {
+  position: absolute;
+  top: -12vh;
+  left: var(--bubble-left);
+  width: var(--bubble-size);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.04) 62%);
+  box-shadow: inset -2px -3px 6px rgba(255, 255, 255, 0.12), 0 0 10px rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  animation: bubble-fall var(--bubble-duration) linear var(--bubble-delay) infinite;
+}
+
+.water-bubbles span:nth-child(1) { --bubble-left: 6%; --bubble-size: 13px; --bubble-duration: 13s; --bubble-delay: -8s; }
+.water-bubbles span:nth-child(2) { --bubble-left: 14%; --bubble-size: 8px; --bubble-duration: 17s; --bubble-delay: -3s; }
+.water-bubbles span:nth-child(3) { --bubble-left: 23%; --bubble-size: 17px; --bubble-duration: 15s; --bubble-delay: -12s; }
+.water-bubbles span:nth-child(4) { --bubble-left: 31%; --bubble-size: 10px; --bubble-duration: 12s; --bubble-delay: -5s; }
+.water-bubbles span:nth-child(5) { --bubble-left: 40%; --bubble-size: 7px; --bubble-duration: 18s; --bubble-delay: -14s; }
+.water-bubbles span:nth-child(6) { --bubble-left: 49%; --bubble-size: 15px; --bubble-duration: 14s; --bubble-delay: -2s; }
+.water-bubbles span:nth-child(7) { --bubble-left: 57%; --bubble-size: 9px; --bubble-duration: 16s; --bubble-delay: -10s; }
+.water-bubbles span:nth-child(8) { --bubble-left: 65%; --bubble-size: 18px; --bubble-duration: 13s; --bubble-delay: -6s; }
+.water-bubbles span:nth-child(9) { --bubble-left: 72%; --bubble-size: 8px; --bubble-duration: 19s; --bubble-delay: -16s; }
+.water-bubbles span:nth-child(10) { --bubble-left: 79%; --bubble-size: 12px; --bubble-duration: 15s; --bubble-delay: -4s; }
+.water-bubbles span:nth-child(11) { --bubble-left: 86%; --bubble-size: 7px; --bubble-duration: 12s; --bubble-delay: -9s; }
+.water-bubbles span:nth-child(12) { --bubble-left: 93%; --bubble-size: 16px; --bubble-duration: 17s; --bubble-delay: -13s; }
+.water-bubbles span:nth-child(13) { --bubble-left: 36%; --bubble-size: 11px; --bubble-duration: 20s; --bubble-delay: -7s; }
+.water-bubbles span:nth-child(14) { --bubble-left: 68%; --bubble-size: 6px; --bubble-duration: 14s; --bubble-delay: -11s; }
+
+@keyframes bubble-fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0);
+  }
+  12%, 82% {
+    opacity: 0.68;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(24px, 115vh, 0);
+  }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: #ff982e; }
+}
+
+.typewriter-text {
+  overflow: hidden;
+  border-right: 2px solid #ff982e;
+  white-space: nowrap;
+  animation: 
+    typewriter 3.5s steps(30, end) infinite alternate,
+    blink 0.75s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
